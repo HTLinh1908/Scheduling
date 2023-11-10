@@ -1,6 +1,8 @@
 import numpy as np
 List = ['Classroom 1','Classroom 2']
 class Classroom():
+    DaysOfTheWeekEncoded = { 0:'Monday', 1:'Tuesday', 2:'Wednesday', 3:'Thursday', 4:'Friday'}
+
     def __init__(self, room, type):
         self.room = room
         self.status = np.array([np.zeros(5)]*6)
@@ -15,13 +17,4 @@ class Classroom():
             return True
         return False
 
-test = Classroom("Classroom1",1)
-print(test.status)
-
-print(test.check_if_free(0,0))
-
-test.book_a_time(0,0)
-print(test.status)
-
-print(test.check_if_free(0,0))
 
