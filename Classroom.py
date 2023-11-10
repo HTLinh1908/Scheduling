@@ -5,8 +5,14 @@ class Classroom():
 
     def __init__(self, room, type):
         self.room = room
-        self.status = np.array([np.zeros(5)]*6)
+        self.status_encoded = np.array([np.zeros(5)]*6)
         self.type = type
+        self.status = [[''] * 6] * 6
+    
+    def initialize(self):
+        for i in range(6):
+            self.status[1,i]=DaysOfTheWeekEncoded.get(i)
+
     
     def check_if_free(self, day, time):
         return True if self.status[day,time]==0 else False
@@ -18,3 +24,6 @@ class Classroom():
         return False
 
 
+C = Classroom('abc',1)
+C.initialize
+print(C.status)
