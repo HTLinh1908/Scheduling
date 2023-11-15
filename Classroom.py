@@ -14,10 +14,10 @@ class Classroom():
             self.status[1,i]=DaysOfTheWeekEncoded.get(i)
 
     
-    def check_if_free(self, day, time):
+    def is_free(self, day, time):
         return True if self.status[day,time]==0 else False
     
-    def book_a_time(self, day, time):
+    def set_busy(self, day, time):
         if self.check_if_free(day,time)==True:
             self.status[day,time]=1
             return True
