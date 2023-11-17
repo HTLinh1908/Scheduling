@@ -5,25 +5,30 @@ class Classroom():
 
     def __init__(self, room, type):
         self.room = room
-        self.status_encoded = np.array([np.zeros(5)]*6)
+        self.status_encoded = np.array([np.zeros(5)]*23)
         self.type = type
-        self.status = [[''] * 6] * 6
+        self.status = [[''] * 6] * 23
     
-    def initialize(self):
+    def set_status(self):
         for i in range(6):
             self.status[1,i]=DaysOfTheWeekEncoded.get(i)
 
+    def is_free(self, day, start, finish):
+        free = True
+        for index in range(start,finish):
+            if index ==1:
+                free = False
+        return free
+
+        return True if self.status_encoded[day,time]==0 else False
     
-    def is_free(self, day, time):
-        return True if self.status[day,time]==0 else False
-    
-    def set_busy(self, day, time):
+    def set_busy(self, day, start, finish):
         if self.check_if_free(day,time)==True:
-            self.status[day,time]=1
+            self.status_encoded[day,time]=1
             return True
         return False
 
 
 C = Classroom('abc',1)
-C.initialize
-print(C.status)
+
+print(C.status_encoded)
