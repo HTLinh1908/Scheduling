@@ -16,7 +16,7 @@ class Classroom():
     def is_free(self, day, start, finish):
         free = True
         for index in range(start,finish):
-            if index ==1:
+            if self.status_encoded(day,index) ==1:
                 free = False
         return free
 
