@@ -23,8 +23,8 @@ class Classroom():
         return True if self.status_encoded[day,time]==0 else False
     
     def set_busy(self, day, start, finish):
-        if self.check_if_free(day,time)==True:
-            self.status_encoded[day,time]=1
+        if self.check_if_free(self,day,start,finish)==True:
+            self.status_encoded[day,start,finish]=1
             return True
         return False
 
