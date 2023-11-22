@@ -3,7 +3,7 @@ List = ['Classroom 1','Classroom 2']
 class Classroom():
     DaysOfTheWeekEncoded = { 0:'Monday', 1:'Tuesday', 2:'Wednesday', 3:'Thursday', 4:'Friday'}
 
-    def __init__(self, room, type):
+    def __init__(self, room, capacity, amenity, priority, building):
         self.room = room
         self.status_encoded = np.array([np.zeros(5)]*23)
         self.type = type
