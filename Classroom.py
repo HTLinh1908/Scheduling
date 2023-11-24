@@ -27,7 +27,11 @@ class Classroom():
             self.status_encoded[day,start,finish]=1
             return True
         return False
-
+class Course:
+    def __init__(self, name, instructor, max_number_of_student):
+        self.name = name
+        self.instructor = instructor
+        self.max_number_of_student = max_number_of_student
 
 C = Classroom('abc',1)
 
