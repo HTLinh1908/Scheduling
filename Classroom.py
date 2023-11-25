@@ -8,7 +8,13 @@ class Classroom():
         self.status_encoded = np.array([np.zeros(5)]*23)
         self.type = type
         self.status = [[] * 6] * 23
+        self.amenity = amenity
+        self.building = building
+
+    def set_amenity(self, amenity): self.amenity = amenity
     
+    def set_priority(self, priority): self.priority = priority
+
     def set_status(self):
         for i in range(6):
             self.status[1,i]=DaysOfTheWeekEncoded.get(i)
@@ -41,13 +47,32 @@ class Department:
         self.course = course
     
     def get_name(self): return self.name
+
     def get_course(self): return self.course
+
 class Instructor:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name): self.name = name
     def get_name(self): return self.name
 
+class Class:
+    def __init__(self, department, course):
+        self.department = department
+        self.course = course
+        self.instructor = None
+        self.room = None
+    
+    def get_department(self): return self.department
 
-C = Classroom('abc',1)
+    def get_course(self): return self.course
 
-print(C.status_encoded)
+    def get_instructor(self): return self.instructor
+    
+    def get_room(self): return self.room
+
+    def set_instructor(self, instructor): self.instructor = instructor
+
+    def set_room(self, room): self.room = room
+    
+
+    
+        
