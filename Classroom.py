@@ -37,6 +37,11 @@ class Course:
         self.credit = credit
         self.amenity = amenity
 
+class Department:
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
 C = Classroom('abc',1)
 
 print(C.status_encoded)
