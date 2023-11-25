@@ -20,8 +20,6 @@ class Classroom():
                 free = False
         return free
 
-        return True if self.status_encoded[day,time]==0 else False
-    
     def set_busy(self, day, start, finish):
         if self.check_if_free(self,day,start,finish)==True:
             self.status_encoded[day,start,finish]=1
@@ -41,6 +39,9 @@ class Department:
     def __init__(self, name, course):
         self.name = name
         self.course = course
+    
+    def get_name(self): return self.name
+    def get_course(self): return self.course
 
 C = Classroom('abc',1)
 
