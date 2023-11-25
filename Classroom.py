@@ -28,10 +28,14 @@ class Classroom():
             return True
         return False
 class Course:
-    def __init__(self, name, instructor, max_number_of_student):
+    def __init__(self, name, department, type, instructor, max_number_of_student, credit, amenity):
         self.name = name
+        self.department = department
+        self.type = type
         self.instructor = instructor
         self.max_number_of_student = max_number_of_student
+        self.credit = credit
+        self.amenity = amenity
 
 C = Classroom('abc',1)
 
