@@ -1,5 +1,5 @@
 import numpy as np
-List = ['Classroom 1','Classroom 2']
+
 class Classroom():
     DaysOfTheWeekEncoded = { 0:'Monday', 1:'Tuesday', 2:'Wednesday', 3:'Thursday', 4:'Friday'}
 
@@ -7,7 +7,7 @@ class Classroom():
         self.room = room
         self.status_encoded = np.array([np.zeros(5)]*23)
         self.type = type
-        self.status = [[''] * 6] * 23
+        self.status = [[] * 6] * 23
     
     def set_status(self):
         for i in range(6):
@@ -46,7 +46,7 @@ class Instructor:
     def __init__(self, name):
         self.name = name
     def get_name(self): return self.name
-    
+
 
 C = Classroom('abc',1)
 
