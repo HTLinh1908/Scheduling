@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 class Classroom():
     DaysOfTheWeekEncoded = { 0:'Monday', 1:'Tuesday', 2:'Wednesday', 3:'Thursday', 4:'Friday'}
@@ -78,8 +79,8 @@ class GeneticAlgorithm:
     def evolve(self, population): return self.mutate_population(self.crossover_population(population))
 
     def crossover_population(self, population):
-
+        pass
     def mutate_population(self, population):
-
+        pass
        
         
