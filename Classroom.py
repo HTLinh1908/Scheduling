@@ -52,7 +52,10 @@ class Department:
     def get_course(self): return self.course
 
 class Instructor:
-    def __init__(self, id, name): self.name = name
+    def __init__(self, id, name): 
+        self.id= id
+        self.name = name
+    def get_id(self): return self.id
     def get_name(self): return self.name
 
 class Class:
