@@ -75,12 +75,3 @@ class Class:
     def set_room(self, room): self.room = room
     
 
-class GeneticAlgorithm:
-    def evolve(self, population): return self.mutate_population(self.crossover_population(population))
-
-    def crossover_population(self, population):
-        pass
-    def mutate_population(self, population):
-        pass
-       
-        
