@@ -78,3 +78,5 @@ class Class:
     def set_room(self, room): self.room = room
     
 
+print("hello nigga")
+
