@@ -33,8 +33,9 @@ class Classroom():
             return True
         return False
 class Course:
-    def __init__(self, name, department, level, instructor, max_number_of_student, credit, amenity):
+    def __init__(self, name, number, department, level, instructor, max_number_of_student, credit, amenity):
         self.name = name
+        self.numer = number
         self.department = department
         self.level = level
         self.instructor = instructor
@@ -56,6 +57,8 @@ class Course:
 
     def get_amenity(self): return self.amenity
     
+    def __str__(self): return self.name
+    def __repr__(self): return self.name
 
 class Department:
     def __init__(self, department, course):
@@ -91,7 +94,12 @@ class Class:
     def set_instructor(self, instructor): self.instructor = instructor
 
     def set_room(self, room): self.room = room
-    
 
-print("hello nigga")
+class Schedule:
+    def __init__(self):
+        pass
 
+a=Course("CS", "number", "Department", "level", "instructor", "max_number_of_student", "credit", "amenity")
+print(a.get_name)
+print(a.__str__)
+print(a.__repr__)
