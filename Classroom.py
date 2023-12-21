@@ -33,21 +33,36 @@ class Classroom():
             return True
         return False
 class Course:
-    def __init__(self, name, department, type, instructor, max_number_of_student, credit, amenity):
+    def __init__(self, name, department, level, instructor, max_number_of_student, credit, amenity):
         self.name = name
         self.department = department
-        self.type = type
+        self.level = level
         self.instructor = instructor
         self.max_number_of_student = max_number_of_student
         self.credit = credit
         self.amenity = amenity
-
-class Department:
-    def __init__(self, name, course):
-        self.name = name
-        self.course = course
     
     def get_name(self): return self.name
+
+    def get_department(self): return self.department
+
+    def get_level(self): return self.level
+
+    def get_instructor(self): return self.instructor
+
+    def get_max_number_of_student(self): return self.max_number_of_student
+
+    def get_credit(self): return self.credit
+
+    def get_amenity(self): return self.amenity
+    
+
+class Department:
+    def __init__(self, department, course):
+        self.department = department
+        self.course = course
+    
+    def get_department(self): return self.department
 
     def get_course(self): return self.course
 
