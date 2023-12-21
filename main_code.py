@@ -47,7 +47,7 @@ for classroom in classrooms:
     for i in range(5):
         for j in range(5):
             if (classroom.status[i][j] != 0):
-                print(f"{i}, {j}: {classroom.status[i][j].name}")
+                print(f"Day {i}, Time slot {j}: Course {classroom.status[i][j].name}")
 
 
 
