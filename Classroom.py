@@ -8,7 +8,7 @@ class Classroom():
         self.room = room
         self.status_encoded = np.array([np.zeros(5)]*23)
         self.type = type
-        self.status = [[] * 6] * 23
+        self.status = [[] * 6] * 21
         self.amenity = amenity
         self.building = building
 
