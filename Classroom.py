@@ -5,5 +5,5 @@ class Classroom():
         self.name = name
         self.capacity = capacity
         self.status = [[0 for _ in range(5)] for _ in range(5)] 
-        #print(self.status)
+        print(self.status)
 
