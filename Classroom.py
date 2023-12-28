@@ -6,7 +6,7 @@ class Classroom():
 
     def __init__(self, room, capacity, amenity, priority, building):
         self.room = room
-        self.status_encoded = np.array([np.zeros(5)]*23)
+        self.status_encoded = np.array([np.zeros(115)])
         self.type = type
         self.status = [[] * 6] * 21
         self.amenity = amenity
