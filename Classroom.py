@@ -2,46 +2,41 @@ import numpy as np
 import random
 
 class Classroom():
-    DaysOfTheWeekEncoded = { 0:'Monday', 1:'Tuesday', 2:'Wednesday', 3:'Thursday', 4:'Friday'}
 
     def __init__(self, room, capacity, amenity, priority, building):
         self.room = room
-        self.status_encoded = np.array([np.zeros(115)])
-        self.type = type
-        self.status = [[] * 6] * 21
-        self.amenity = amenity
-        self.building = building
+        self.status = np.array([np.zeros(205)])
+        self.capacity = capacity
+#        self.type = type
+#        self.amenity = amenity
+#        self.building = building
 
-    def set_amenity(self, amenity): self.amenity = amenity
+#    def set_amenity(self, amenity): self.amenity = amenity
     
-    def set_priority(self, priority): self.priority = priority
-
-    def set_status(self):
-        for i in range(6):
-            self.status[1,i]=DaysOfTheWeekEncoded.get(i)
+#    def set_priority(self, priority): self.priority = priority
 
     def is_free(self, day, start, finish):
         free = True
         for index in range(start,finish):
-            if self.status_encoded(day,index) ==1:
+            if self.status(day,index) ==1:
                 free = False
         return free
 
     def set_busy(self, day, start, finish):
         if self.check_if_free(self,day,start,finish)==True:
-            self.status_encoded[day,start,finish]=1
+            self.status[day,start,finish]=1
             return True
         return False
+
+        
 class Course:
-    def __init__(self, name, number, department, level, instructor, max_number_of_student, credit, amenity):
+    def __init__(self, name, number, department, level, instructor, max_number_of_student): #instructor + credit + amenity
         self.name = name
         self.numer = number
         self.department = department
         self.level = level
-        self.instructor = instructor
         self.max_number_of_student = max_number_of_student
-        self.credit = credit
-        self.amenity = amenity
+
     
     def get_name(self): return self.name
 
@@ -53,12 +48,6 @@ class Course:
 
     def get_max_number_of_student(self): return self.max_number_of_student
 
-    def get_credit(self): return self.credit
-
-    def get_amenity(self): return self.amenity
-    
-    def __str__(self): return self.name
-    def __repr__(self): return self.name
 
 class Department:
     def __init__(self, department, course):
