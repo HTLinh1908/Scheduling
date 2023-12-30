@@ -17,8 +17,8 @@ class Classroom():
 
     def is_free(self, day, start, finish):
         free = True
-        for index in range(start,finish):
-            if self.status(day,index) ==1:
+        for index in range(41*day + start,41*day + finish):
+            if self.status(index) ==1:
                 free = False
         return free
 
@@ -87,8 +87,3 @@ class Class:
 class Schedule:
     def __init__(self):
         pass
-
-a=Course("CS", "number", "Department", "level", "instructor", "max_number_of_student", "credit", "amenity")
-print(a.get_name)
-print(a.__str__)
-print(a.__repr__)
