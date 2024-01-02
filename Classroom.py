@@ -15,6 +15,9 @@ class Classroom():
     
 #    def set_priority(self, priority): self.priority = priority
 
+    def convert1h30(self, day, start, finish):
+        return day*41, day*41+start, day*41+finish
+
     def is_free(self, day, start, finish):
         free = True
         for index in range(41*day + start,41*day + finish):
