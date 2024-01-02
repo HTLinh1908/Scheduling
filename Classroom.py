@@ -15,23 +15,30 @@ class Classroom():
     
 #    def set_priority(self, priority): self.priority = priority
 
-    def convert1h30(self, day, start, finish):
-        return day*41, day*41+start, day*41+finish
 
-    def is_free(self, day, start, finish):
+
+    def is_free(self, start, finish):
         free = True
-        for index in range(41*day + start,41*day + finish):
-            if self.status(index) ==1:
+        for index in range(start,finish):
+            if self.status(index) !=0:
                 free = False
         return free
 
-    def set_busy(self, day, start, finish):
-        if self.check_if_free(self,day,start,finish)==True:
-            self.status[day,start,finish]=1
+    def set_busy(self, start, finish):
+        if self.is_free(self,start,finish)==True:
+            self.status[start,finish]=1
             return True
         return False
 
-        
+    def convert_1h30_course(self, day, start, finish):
+        return day*41+start, day*41+finish
+
+    def set_busy_1h30x2_course(self, start, finish):
+        if self.is_free(self,start,finish)==True and self.is_free(self,start+82,finish+82)==True:
+            self.status[start,finish]=1
+            self.status(start+82, finish+82)=1
+            return True
+        return False
 class Course:
     def __init__(self, name, number, department, level, instructor, max_number_of_student): #instructor + credit + amenity
         self.name = name
