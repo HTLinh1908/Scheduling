@@ -5,12 +5,12 @@ class Classroom():
 
     def __init__(self, room, capacity, amenity, priority, building):
         self.room = room
-        self.status = np.array([np.zeros(205)])
+        self.status = np.zeros((41,5))
         self.capacity = capacity
 #        self.type = type
 #        self.amenity = amenity
 #        self.building = building
-
+        print(self.status)
 #    def set_amenity(self, amenity): self.amenity = amenity
     
 #    def set_priority(self, priority): self.priority = priority
@@ -35,10 +35,15 @@ class Classroom():
 
     def set_busy_1h30x2_course(self, start, finish):
         if self.is_free(self,start,finish)==True and self.is_free(self,start+82,finish+82)==True:
-            self.status[start,finish]=1
-            self.status(start+82, finish+82)=1
+            
+            for index in range(start, finish):
+                self.status[index]=1
+            
+            for index in range(start+82, finish+82):
+                self.status[start+82, finish+82]=1
             return True
         return False
+        
 class Course:
     def __init__(self, name, number, department, level, instructor, max_number_of_student): #instructor + credit + amenity
         self.name = name
@@ -97,3 +102,4 @@ class Class:
 class Schedule:
     def __init__(self):
         pass
+c1 = Classroom("room", "capacity", "amenity", "priority", "building")
