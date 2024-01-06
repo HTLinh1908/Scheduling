@@ -10,7 +10,6 @@ class Classroom():
 #        self.type = type
 #        self.amenity = amenity
 #        self.building = building
-        print(self.status)
 #    def set_amenity(self, amenity): self.amenity = amenity
     
 #    def set_priority(self, priority): self.priority = priority
@@ -48,14 +47,30 @@ class Classroom():
 
 
 class Course:
-    def __init__(self, name, max_number_of_student): #instructor + credit + amenity + department
+    def __init__(self, name, max_number_of_student, often, prefered_day, prefered_time): #instructor + credit + amenity + department
         self.name = name
         #self.numer = number
         #self.department = department
         #self.level = level
         self.max_number_of_student = max_number_of_student
-
-    
+        self.often = often 
+        #list of numbers
+        #1 is 2 times a week 1h30m each
+        #2 is 1 time a week for 3h once
+        #3 is 2 times a week for 3h each
+        self.prefered_day = prefered_day
+        # 0: Monday 
+        # 1: Tuesday
+        # 2: Wednesday
+        # 3: Thursday
+        # 4: Friday
+        self.prefered_time = prefered_time
+        # 0: 8:00 am start
+        # 1: 9:45am start
+        # 2: 11:30 am start
+        # 3: 1:15 pm start
+        # 4: 3:00 pm start
+        # 5: 4h45 pm start
     def get_name(self): return self.name
 
     #def get_department(self): return self.department
@@ -119,8 +134,23 @@ room_list = [
     Classroom("CR7", 35),
     Classroom("CR8", 45),
 ]
-mydict = {}
-for i in room_list:
-    pass
+
+course_list = [
+    Course("ECON307", 30),
+    Course("HIS310", 30),
+    Course("MATH308", 30),
+    Course("ECON102", 50),
+    Course("MATH105", 50),
+    Course("MUSIC102", 50),
+    Course("CS204", 40),
+    Course("CS311", 30),
+    Course("SOCI218",40),
+    Course("CS301", 300),
+    Course("SOCI217",40)
+]
+
+
+
+
 
     
