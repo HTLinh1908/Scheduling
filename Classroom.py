@@ -6,6 +6,7 @@ class Classroom():
     def __init__(self, room, capacity): #amenity, priority, building
         self.room = room
         self.status = np.zeros((41,5))
+        
         self.capacity = capacity
 #        self.type = type
 #        self.amenity = amenity
@@ -145,7 +146,7 @@ course_list = [
     Course("CS204", 40),
     Course("CS311", 30),
     Course("SOCI218",40),
-    Course("CS301", 300),
+    Course("CS301", 30),
     Course("SOCI217",40)
 ]
 
