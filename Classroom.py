@@ -48,24 +48,26 @@ class Classroom():
 
 
 class Course:
-    def __init__(self, name, max_number_of_student, often, prefered_day, prefered_time): #instructor + credit + amenity + department
+    def __init__(self, name, max_number_of_student, frequency, prefered_day_time): #instructor + credit + amenity + department
         self.name = name
         #self.numer = number
         #self.department = department
         #self.level = level
         self.max_number_of_student = max_number_of_student
-        self.often = often 
+        self.frequency = frequency
         #list of numbers
         #1 is 2 times a week 1h30m each
         #2 is 1 time a week for 3h once
         #3 is 2 times a week for 3h each
-        self.prefered_day = prefered_day
+        self.prefered_day_time = prefered_day_time
+        # Array of list indluding numbers (x, y) representing (day, time)
+        # x
         # 0: Monday 
         # 1: Tuesday
         # 2: Wednesday
         # 3: Thursday
         # 4: Friday
-        self.prefered_time = prefered_time
+        # y
         # 0: 8:00 am start
         # 1: 9:45am start
         # 2: 11:30 am start
