@@ -5,9 +5,10 @@ class Classroom():
 
     def __init__(self, room, capacity): #amenity, priority, building
         self.room = room
+        self.capacity = capacity
         self.status = np.zeros((41,5))
         
-        self.capacity = capacity
+ 
 #        self.type = type
 #        self.amenity = amenity
 #        self.building = building
@@ -85,44 +86,43 @@ class Course:
     def get_max_number_of_student(self): return self.max_number_of_student
 
 
-class Department:
-    def __init__(self, department, course):
-        self.department = department
-        self.course = course
+#class Department:
+#    def __init__(self, department, course):
+#       self.department = department
+#        self.course = course
     
-    def get_department(self): return self.department
+#    def get_department(self): return self.department
 
-    def get_course(self): return self.course
+#    def get_course(self): return self.course
 
-class Instructor:
-    def __init__(self, id, name): 
-        self.id = id
-        self.name = name
-    def get_id(self): return self.id
-    def get_name(self): return self.name
+#class Instructor:
+#    def __init__(self, id, name): 
+#        self.id = id
+#        self.name = name
+#    def get_id(self): return self.id
+#    def get_name(self): return self.name
 
-class Class:
-    def __init__(self, department, course):
-        self.department = department
-        self.course = course
-        self.instructor = None
-        self.room = None
+#class Class:
+#    def __init__(self, department, course):
+#        self.department = department
+#        self.course = course
+#        self.instructor = None
+#        self.room = None
     
-    def get_department(self): return self.department
+#    def get_department(self): return self.department
 
-    def get_course(self): return self.course
+#    def get_course(self): return self.course
 
-    def get_instructor(self): return self.instructor
+#    def get_instructor(self): return self.instructor
     
-    def get_room(self): return self.room
+#    def get_room(self): return self.room
 
-    def set_instructor(self, instructor): self.instructor = instructor
+#    def set_instructor(self, instructor): self.instructor = instructor
 
-    def set_room(self, room): self.room = room
+#    def set_room(self, room): self.room = room
 
 class Schedule:
-    def __init__(self):
-        pass
+    pass
 
 
 room_list = [
