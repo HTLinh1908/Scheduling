@@ -16,46 +16,14 @@ class Classroom():
     
 #    def set_priority(self, priority): self.priority = priority
 
-
-
-    def is_free(self, day, start, finish):
-        free = True
-        for i in range(start,finish):
-            if self.status(day,i) !=0:
-                free = False
-        return free
-
-    def set_busy(self, day, start, finish):
-        if self.is_free(self,start,finish)==True:
-            for i in range(start, finish):
-                self.status[day, i]=1
-            return True
-        return False
-
-    def set_course_1h30x2(self, day, start):
-        flag = self.is_free(self, day, start, start+5) and self.is_free(self, day+2, start, start+5)
-        if flag==True:
-            for i in range(start,start+5):
-                self.status[day, i]=1
-        return flag
-    
-    def set_course_3h(self, day, start):
-        flag = self.is_free(self, day, start, start+11)
-        if flag == True:
-            for i in range(start, start+11):
-                self.status[day, i]=1
-        return flag
-
-
-
 class Course:
-    def __init__(self, name, max_number_of_student, frequency, prefered_day_time): #instructor + credit + amenity + department
+    def __init__(self, name, max_number_of_student, prefered_day_time): #frequency, instructor + credit + amenity + department
         self.name = name
         #self.numer = number
         #self.department = department
         #self.level = level
         self.max_number_of_student = max_number_of_student
-        self.frequency = frequency
+        #self.frequency = frequency
         #list of numbers
         #1 is 2 times a week 1h30m each
         #2 is 1 time a week for 3h once
@@ -122,7 +90,33 @@ class Course:
 #    def set_room(self, room): self.room = room
 
 class Schedule:
-    pass
+    def is_free(self, day, start, finish):
+        free = True
+        for i in range(start,finish):
+            if self.status(day,i) !=0:
+                free = False
+        return free
+
+    def set_busy(self, day, start, finish):
+        if self.is_free(self,start,finish)==True:
+            for i in range(start, finish):
+                self.status[day, i]=1
+            return True
+        return False
+
+    def set_course_1h30x2(self, day, start):
+        flag = self.is_free(self, day, start, start+5) and self.is_free(self, day+2, start, start+5)
+        if flag==True:
+            for i in range(start,start+5):
+                self.status[day, i]=1
+        return flag
+    
+    def set_course_3h(self, day, start):
+        flag = self.is_free(self, day, start, start+11)
+        if flag == True:
+            for i in range(start, start+11):
+                self.status[day, i]=1
+        return flag
 
 
 room_list = [
