@@ -21,48 +21,11 @@ class Course():
 
         self.capacity = capacity
 
-classrooms = [
-    Classroom("CR501", 70),
-    Classroom("CR502", 65),
-    Classroom("CR1", 55),
-    Classroom("CR2", 25),
-    Classroom("CR4", 45),
-    Classroom("CR3", 30),
-    Classroom("CR5", 15),
-    Classroom("CR6", 35),
-    Classroom("CR7", 35),
-    Classroom("CR8", 45),
-]
-classrooms = sorted(classrooms, key = lambda x : x.capacity) 
-#increasing capacity order
-
-courses = [
-    Course("101", [(1, 1), (3, 2)], 50), 
-    Course("102", [(1, 4), (2, 0)], 30), 
-    Course("103", [(2, 4), (1, 0)], 40), 
-    Course("104", [(3, 0), (2, 2)], 50), 
-    Course("105", [(3, 2), (2, 2)], 40), 
-    Course("106", [(0, 4), (4, 2)], 50), 
-    Course("107", [(0, 3), (3, 1)], 10), 
-    Course("108", [(0, 0), (4, 4)], 30), 
-    Course("109", [(4, 2), (3, 4)], 30), 
-    Course("110", [(3, 4), (2, 3)], 30), 
-    Course("111", [(3, 4), (2, 3)], 10), 
-    Course("112", [(2, 1), (4, 1)], 30), 
-    Course("113", [(2, 0), (4, 3)], 30), 
-    Course("114", [(2, 3), (1, 4)], 40), 
-    Course("115", [(1, 0), (3, 4)], 10), 
-    Course("116", [(3, 2), (1, 1)], 10), 
-    Course("117", [(4, 3), (0, 4)], 30), 
-    Course("118", [(4, 1), (1, 4)], 10), 
-    Course("119", [(1, 0), (1, 1)], 10), 
-    Course("120", [(3, 0), (1, 0)], 40), 
-]
-
-
 class Schedule():
+    
     table = [[[] for _ in range(5)] for _ in range(5)] 
     distribution = [[0 for j in range(5)] for i in range(5)]
+
 
     def add_course(self, course):
         for day, time in course.time_slots:
@@ -88,6 +51,43 @@ class Schedule():
                     self.table[day][time].remove(tmp)
                     self.distribution[day][time] -= 1
 def main():
+    classrooms = [
+    #Classroom("CR501", 70),
+    Classroom("CR502", 65),
+    Classroom("CR1", 55),
+    Classroom("CR2", 25),
+    Classroom("CR4", 45),
+    #Classroom("CR3", 30),
+    Classroom("CR5", 15),
+    Classroom("CR6", 35),
+    Classroom("CR7", 35),
+    Classroom("CR8", 45),
+    ]
+    classrooms = sorted(classrooms, key = lambda x : x.capacity) 
+    #increasing capacity order
+
+    courses = [
+        Course("101", [(1, 1), (3, 2)], 50), 
+        Course("102", [(1, 4), (2, 0)], 30), 
+        Course("103", [(2, 4), (1, 0)], 40), 
+        Course("104", [(3, 0), (2, 2)], 50), 
+        Course("105", [(3, 2), (2, 2)], 40), 
+        Course("106", [(0, 4), (4, 2)], 50), 
+        Course("107", [(0, 3), (3, 1)], 10), 
+        Course("108", [(0, 0), (4, 4)], 30), 
+        Course("109", [(4, 2), (3, 4)], 30), 
+        Course("110", [(3, 4), (2, 3)], 30), 
+        Course("111", [(3, 4), (2, 3)], 10), 
+        Course("112", [(2, 1), (4, 1)], 30), 
+        Course("113", [(2, 0), (4, 3)], 30), 
+        Course("114", [(2, 3), (1, 4)], 40), 
+        Course("115", [(1, 0), (3, 4)], 10), 
+        Course("116", [(3, 2), (1, 1)], 10), 
+        Course("117", [(4, 3), (0, 4)], 30), 
+        Course("118", [(4, 1), (1, 4)], 10), 
+        Course("119", [(1, 0), (1, 1)], 10), 
+        Course("120", [(3, 0), (1, 0)], 40), 
+    ]
     schedule = Schedule()
 
     for course in courses:
@@ -125,7 +125,9 @@ def main():
 
     for course in final_result:
         print(f"{course.name}: {course.room.name}, {course.slot}")
-
+    
+    classrooms = sorted(classrooms, key = lambda x : x.name)
+    
     for classroom in classrooms:
         print(f"{classroom.name}:")
         for i in range(5):
