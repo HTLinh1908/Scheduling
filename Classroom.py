@@ -92,15 +92,15 @@ class Course:
 #    def set_room(self, room): self.room = room
 
 class Schedule():
-    table = [[[] for _ in range(5)] for _ in range(5)] 
-    distribution = [[0 for j in range(5)] for i in range(5)]
+    table = np.zeros((41,5))
+    distribution = np.zeros((41,5))
     
-    def is_free(self, day, start, finish):
-        free = True
-        for i in range(start,finish):
-            if self.status(day,i) !=0:
-                free = False
-        return free
+    #def is_free(self, day, start, finish):
+    #    free = True
+    #    for i in range(start,finish):
+    #        if self.status(day,i) !=0:
+    #            free = False
+    #    return free
 
     #def set_course(self, day, start, finish):
     #    if self.is_free(self,start,finish)==True:
@@ -122,18 +122,18 @@ class Schedule():
     #        for i in range(start, start+11):
     #            self.status[day, i]=1
     #    return flag
-    #def add_course(self, course):
-    #    for day, time in course.prefered_day_time:
-    #        self.table[day][time*7].append(course)
-    #        self.distribution[day][time*7] += 1
+    def add_course_1h30x2(self, course):
+        for day, time in course.prefered_day_time:
+            self.table[day][time*7].append(course)
+            self.distribution[day][time*7] += 1
     def find_course_min_indices(self):
         min_value = 9999
         min_i, min_j = (-1, -1)
 
         for i in range(5):
             for j in range(5):
-                if (self.distribution[i][j] > 0 and self.distribution[i][j] < min_value):
-                    min_value = self.distribution[i][j]
+                if (self.distribution[i][j*7] > 0 and self.distribution[i][j*7] < min_value):
+                    min_value = self.distribution[i][j*7]
                     min_i, min_j = i, j
 
     def remove_course(self, course):
