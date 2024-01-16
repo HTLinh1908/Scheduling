@@ -17,7 +17,9 @@ class Classroom():
 #    def set_priority(self, priority): self.priority = priority
 
 class Course:
-    def __init__(self, name, max_number_of_student, prefered_day_time): #frequency, instructor + credit + amenity + department
+    room = ""
+    slot =(-1,-1)
+    def __init__(self, name, prefered_day_time, max_number_of_student): #frequency, instructor + credit + amenity + department
         self.name = name
         #self.numer = number
         #self.department = department
@@ -89,7 +91,10 @@ class Course:
 
 #    def set_room(self, room): self.room = room
 
-class Schedule:
+class Schedule():
+    table = [[[] for _ in range(5)] for _ in range(5)] 
+    distribution = [[0 for j in range(5)] for i in range(5)]
+    
     def is_free(self, day, start, finish):
         free = True
         for i in range(start,finish):
@@ -97,26 +102,39 @@ class Schedule:
                 free = False
         return free
 
-    def set_busy(self, day, start, finish):
-        if self.is_free(self,start,finish)==True:
-            for i in range(start, finish):
-                self.status[day, i]=1
-            return True
-        return False
+    #def set_course(self, day, start, finish):
+    #    if self.is_free(self,start,finish)==True:
+    #        for i in range(start, finish):
+    #            self.status[day, i]=1
+    #        return True
+    #    return False
 
-    def set_course_1h30x2(self, day, start):
-        flag = self.is_free(self, day, start, start+5) and self.is_free(self, day+2, start, start+5)
-        if flag==True:
-            for i in range(start,start+5):
-                self.status[day, i]=1
-        return flag
+    #def add_course_1h30x2(self, day, start):
+    #    flag = self.is_free(self, day, start, start+5) and self.is_free(self, day+2, start, start+5)
+    #    if flag==True:
+    #        for i in range(start,start+5):
+    #            self.status[day, i]=1
+    #    return flag
     
-    def set_course_3h(self, day, start):
-        flag = self.is_free(self, day, start, start+11)
-        if flag == True:
-            for i in range(start, start+11):
-                self.status[day, i]=1
-        return flag
+    #def add_course_3h(self, day, start):
+    #    flag = self.is_free(self, day, start, start+11)
+    #    if flag == True:
+    #        for i in range(start, start+11):
+    #            self.status[day, i]=1
+    #    return flag
+    def add_course(self, course):
+        for day, time in course.prefered_day_time:
+            self.table[day][time].append(course)
+            self.distribution[day][time] += 1
+    def find_course_min_indices(self):
+        min_value = 9999
+        min_i, min_j = (-1, -1)
+
+        for i in range(5):
+            for j in range(5):
+                if (self.distribution[i][j] > 0 and self.distribution[i][j] < min_value):
+                    min_value = self.distribution[i][j]
+                    min_i, min_j = i, j
 
 
 room_list = [
