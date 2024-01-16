@@ -27,10 +27,12 @@ class Schedule():
     distribution = [[0 for j in range(5)] for i in range(5)]
 
 
-    def add_course(self, course):
+    def add_course_1h30x2(self, course):
         for day, time in course.time_slots:
             self.table[day][time].append(course)
             self.distribution[day][time] += 1
+            self.table[day+2][time].append(course)
+            self.distribution[day+2][time] += 11
 
     def find_course_min_indices(self):
         min_value = 9999
@@ -44,12 +46,16 @@ class Schedule():
 
         return min_i, min_j
 
-    def remove_course(self, course):
+    def remove_course_1h30x2(self, course):
         for day, time in course.time_slots:
             for tmp in self.table[day][time]:
                 if (tmp.name == course.name):
                     self.table[day][time].remove(tmp)
                     self.distribution[day][time] -= 1
+                    self.table[day+2][time].remove(tmp)
+                    self.distribution[day+2][time] -= 1
+
+
 def main():
     classrooms = [
     #Classroom("CR501", 70),
