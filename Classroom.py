@@ -126,16 +126,7 @@ class Schedule():
         for day, time in course.prefered_day_time:
             self.table[day][time*7].append(course)
             self.distribution[day][time*7] += 1
-    def find_course_min_indices(self):
-        min_value = 9999
-        min_i, min_j = (-1, -1)
-
-        for i in range(5):
-            for j in range(5):
-                if (self.distribution[i][j*7] > 0 and self.distribution[i][j*7] < min_value):
-                    min_value = self.distribution[i][j*7]
-                    min_i, min_j = i, j
-
+            
     def remove_course(self, course):
         for day, time in course.time_slots:
             for tmp in self.table[day][time]:
