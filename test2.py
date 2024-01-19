@@ -32,7 +32,7 @@ class Schedule():
             self.table[day][time].append(course)
             self.distribution[day][time] += 1
             self.table[day+2][time].append(course)
-            self.distribution[day+2][time] += 11
+            self.distribution[day+2][time] += 1
 
     def find_course_min_indices(self):
         min_value = 9999
@@ -73,31 +73,31 @@ def main():
     #increasing capacity order
 
     courses = [
-        Course("101", [(1, 1), (3, 2)], 50), 
+        Course("101", [(1, 1), (1, 2)], 50), 
         Course("102", [(1, 4), (2, 0)], 30), 
         Course("103", [(2, 4), (1, 0)], 40), 
-        Course("104", [(3, 0), (2, 2)], 50), 
-        Course("105", [(3, 2), (2, 2)], 40), 
-        Course("106", [(0, 4), (4, 2)], 50), 
-        Course("107", [(0, 3), (3, 1)], 10), 
-        Course("108", [(0, 0), (4, 4)], 30), 
-        Course("109", [(4, 2), (3, 4)], 30), 
-        Course("110", [(3, 4), (2, 3)], 30), 
-        Course("111", [(3, 4), (2, 3)], 10), 
-        Course("112", [(2, 1), (4, 1)], 30), 
-        Course("113", [(2, 0), (4, 3)], 30), 
+        Course("104", [(1, 0), (2, 2)], 50), 
+        Course("105", [(1, 2), (2, 2)], 40), 
+        Course("106", [(0, 4), (2, 2)], 50), 
+        Course("107", [(0, 3), (1, 1)], 10), 
+        Course("108", [(0, 0), (2, 4)], 30), 
+        Course("109", [(2, 2), (1, 4)], 30), 
+        Course("110", [(1, 4), (2, 3)], 30), 
+        Course("111", [(1, 4), (2, 3)], 10), 
+        Course("112", [(2, 1), (2, 1)], 30), 
+        Course("113", [(2, 0), (2, 3)], 30), 
         Course("114", [(2, 3), (1, 4)], 40), 
-        Course("115", [(1, 0), (3, 4)], 10), 
-        Course("116", [(3, 2), (1, 1)], 10), 
-        Course("117", [(4, 3), (0, 4)], 30), 
-        Course("118", [(4, 1), (1, 4)], 10), 
+        Course("115", [(1, 0), (1, 4)], 10), 
+        Course("116", [(1, 2), (1, 1)], 10), 
+        Course("117", [(2, 3), (0, 4)], 30), 
+        Course("118", [(2, 1), (1, 4)], 10), 
         Course("119", [(1, 0), (1, 1)], 10), 
-        Course("120", [(3, 0), (1, 0)], 40), 
+        Course("120", [(1, 0), (1, 0)], 40), 
     ]
     schedule = Schedule()
 
     for course in courses:
-        schedule.add_course(course)
+        schedule.add_course_1h30x2(course)
 
 
     for i in range(5):
@@ -125,7 +125,7 @@ def main():
                 final_result.append(course)
             
                 #mark course as processed and remove from distribution
-                schedule.remove_course(course)
+                schedule.remove_course_1h30x2(course)
 
                 break
 
