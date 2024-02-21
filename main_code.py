@@ -48,34 +48,21 @@ while (not ok):
                 #print(f"ok {course.name}")
                 break
 
-#for course in final_result:
-  #  print(f"{course.name}: {course.room.name}, {course.slot}")
 
-# for classroom in classrooms:
-#     print(f"{classroom.name}:")
-#     for i in range(5):
-#         for j in range(5):
-#             if (classroom.status[i][j] != 0):
-#                 print(f"Day {i}, Time slot {j}: Course {classroom.status[i][j].name}")
-#classrooms = sorted(classrooms, key = lambda x : x.name) 
+### output value 
 with open("sample_output.txt", "w") as output_file:
-    # for classroom in classrooms:
-    #     print(classroom.name, end=" ", file=output_file)
-    # print(file=output_file)
-    days=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     for i in range(5):
-        print(days[i], file=output_file)
-        for classroom in classrooms:
-            print(classroom.name, end=" ", file=output_file)
-        print(file=output_file)
+        for k in range(len(classrooms)):
+            classroom = classrooms[k]
+            print(classroom.name, end= "row" if (k == len(classrooms) -1 ) else " ", file=output_file)
         for j in range(5):
-            for classroom in classrooms:
+            for k in range(len(classrooms)):
+                classroom = classrooms[k]
                 if classroom.status[i][j] != 0:
-                    print(classroom.status[i][j].name, end=" ", file=output_file)
+                    print(classroom.status[i][j].name, end = "row" if (k == len(classrooms) -1 ) else " ", file=output_file)
                 else:
-                    print("_", end=" ", file=output_file)
-            print(file=output_file)
-        print(file=output_file)
+                    print("_", end = "row" if (k == len(classrooms) -1 ) else " ", file=output_file)
+        print("end", file=output_file)
 
 
     
