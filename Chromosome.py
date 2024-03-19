@@ -13,6 +13,4 @@ class Chromosome():
     def calculate_fitness(self, courses, classrooms):
         pass
 
-    def mutation(self, mutation_rate):
-        pass
 
