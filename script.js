@@ -1,5 +1,5 @@
 window.onload = function() {
-    fetch('sample_output.txt')
+    fetch('output.txt')
         .then(response => response.text())
         .then(data => {
             const tables = data.split("end"); 

@@ -8,25 +8,30 @@ ga.create_population()
 
 print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
-for i in range(1, 1001):
+for i in range(1, 101):
     ga.selection()
     print("Generation: ", i , " best fitnesses: ", ga.population[0].fitness)
     ##print([x.fitness for x in ga.population])
 
 print("Generation: ", 1000, " best fitness: ", ga.population[0].fitness)
 
-# def write_output_file(ga, filename):
-#     res = [[[0 for _ in range(5)] for _ in range(5)]
-#     with open(filename, 'w') as f:
-#         for chromosome in ga.population:
-#             f.write(' '.join(['CR' + str(room + 1) for room in chromosome.room]) + '\n')
-#             for i in range(5):  # Assuming there are 5 time slots
-#                 f.write('row')
-#                 for j in range(len(chromosome.time)):
-#                     if i in chromosome.time[j]:
-#                         f.write(' ' + str(chromosome.courses[j].id))
-#                     else:
-#                         f.write(' _')
-#                  f.write('\n')
-# #             f.write('rowend\n')
+
+res = [[["" for _ in range(len(classrooms))] for _ in range(5)] for _ in range(5)]
+for i in range(len(courses)):
+    chosen_slot = courses[i].time_slots[ga.population[0].time[i]]
+    chosen_room = ga.population[0].room[i]
+    for chosen_day, chosen_time, _ in chosen_slot:
+        res[chosen_day][chosen_time][chosen_room] += courses[i].name
+    if (len(chosen_slot) == 1):
+        res[chosen_slot[0][0]][chosen_slot[0][1] + 1][chosen_room] += courses[i].name
+
+with open("output.txt", "w") as f:
+    for day in range(5):
+        for i in range(len(classrooms)):
+            f.write(classrooms[i].name + ("row" if i == len(classrooms) - 1 else " "))
+        for i in range(5):
+            for j in range(len(classrooms)):
+                f.write((res[day][i][j] if res[day][i][j] != "" else "_") + ("row" if j == len(classrooms) - 1 else " "))
+        f.write("end\n")
+
 
