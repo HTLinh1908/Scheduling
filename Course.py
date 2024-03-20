@@ -1,4 +1,5 @@
 import numpy as np
+from Classroom import Classroom
 class Course:
     room = ""
     slot = (-1, -1)
@@ -26,19 +27,9 @@ class Course:
         return self.name
 
 
-class Classroom:
-    def __init__(self, name, capacity):
-        self.name = name
-        self.capacity = capacity
-        self.availability = [[0 for _ in range(5)] for _ in range(5)]
-
-    def get_capacity(self):
-        return self.capacity
-
-
-def timeslots_matrix(timeslots_list):
+def timeslots_matrix(timeslot_list):
     matrix = np.zeros((5, 6))
-    for i in timeslots_list:
+    for i in timeslot_list:
         if i[0][2] == 1.5:
             matrix[i[0][0], i[0][1]] += 1
             matrix[i[0][0]+2, i[0][1]] += 1
@@ -47,6 +38,14 @@ def timeslots_matrix(timeslots_list):
             matrix[i[0][0], i[0][1]+1] += 1
     return matrix
 
+def filter_timeslots(list_of_course, chromosome):
+    timeslots_list = []
+    chromosome_list = [int(i) for i in list(chromosome)]
+    index = 0
+    for element in list_of_course:
+        timeslots_list.append(element.get_timeslots(chromosome_list[index]))
+        index += 1
+    return timeslots_list
 
 def check_overlapped(list_of_course, chromosome):
     timeslots_list = filter_timeslots(list_of_course, chromosome)
@@ -58,14 +57,7 @@ def check_overlapped(list_of_course, chromosome):
     return penalty
 
 
-def filter_timeslots(list_of_course, chromosome):
-    timeslots_list = []
-    chromosome_list = [int(i) for i in list(chromosome)]
-    index = 0
-    for element in list_of_course:
-        timeslots_list.append(element.get_timeslots(chromosome_list[index]))
-        index += 1
-    return timeslots_list
+
 
 
 def check_availability(list_of_course, chromosome, list_of_classroom):
