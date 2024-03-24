@@ -62,7 +62,7 @@ def time_slot_3h_free_all():
 def course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_restricted_3h, free_1h30, free_3h):
     base = 100
     for i in range(1, restricted_1h30+1):
-        base = base + 1
+        base += 1
         print("Course(\"", end="")
         print(base, end="")
         print("\", ", end="")
@@ -72,7 +72,7 @@ def course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_
         print("),")
 
     for i in range(1, restricted_3h+1):
-        base = base + 1
+        base += 1
         print("Course(\"", end="")
         print(base, end="")
         print("\", ", end="")
@@ -82,7 +82,7 @@ def course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_
         print("),")
 
     for i in range(1, days_restricted_1h30+1):
-        base = base + 1
+        base += 1
         print("Course(\"", end="")
         print(base, end="")
         print("\", ", end="")
@@ -92,7 +92,7 @@ def course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_
         print("),")
 
     for i in range(1, days_restricted_3h+1):
-        base = base + 1
+        base += 1
         print("Course(\"", end="")
         print(base, end="")
         print("\", ", end="")
@@ -102,7 +102,7 @@ def course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_
         print("),")
 
     for i in range(1, free_1h30+1):
-        base = base + 1
+        base += 1
         print("Course(\"", end="")
         print(base, end="")
         print("\", ", end="")
@@ -112,7 +112,7 @@ def course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_
         print("),")
 
     for i in range(1, free_3h):
-        base = base + 1
+        base += 1
         print("Course(\"", end="")
         print(base, end="")
         print("\", ", end="")
