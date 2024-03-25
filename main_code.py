@@ -8,15 +8,15 @@ ga.create_population()
 
 print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
-for i in range(1, 101):
+for i in range(1, 501):
     ga.selection()
     print("Generation: ", i , " best fitnesses: ", ga.population[0].fitness)
     ##print([x.fitness for x in ga.population])
 
-print("Generation: ", 1000, " best fitness: ", ga.population[0].fitness)
-
 
 res = [[["" for _ in range(len(classrooms))] for _ in range(5)] for _ in range(5)]
+time_in_day = ["8AM", "9:45AM", "11:30AM", "1:15PM", "3PM"]
+
 for i in range(len(courses)):
     chosen_slot = courses[i].time_slots[ga.population[0].time[i]]
     chosen_room = ga.population[0].room[i]
@@ -27,9 +27,11 @@ for i in range(len(courses)):
 
 with open("output.txt", "w") as f:
     for day in range(5):
+        f.write(" ")
         for i in range(len(classrooms)):
             f.write(classrooms[i].name + ("row" if i == len(classrooms) - 1 else " "))
         for i in range(5):
+            f.write(time_in_day[i] + " ")
             for j in range(len(classrooms)):
                 f.write((res[day][i][j] if res[day][i][j] != "" else "_") + ("row" if j == len(classrooms) - 1 else " "))
         f.write("end\n")

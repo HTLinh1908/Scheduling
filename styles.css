@@ -16,4 +16,6 @@ div {
   font-weight: bold;
 }
 
-
+tr td:first-child {
+  font-weight: bold;
+}
