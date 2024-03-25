@@ -40,7 +40,7 @@ class Chromosome():
                         for t in time2:
                             if k == t:
                                 violated = 1
-                                break;
+                                break
                 if violated == 1:
                     self.fitness -= 1
 
