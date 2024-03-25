@@ -1,0 +1,21 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 15px;
+  table-layout: fixed;
+}
+
+div {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+tr td:first-child {
+  font-weight: bold;
+}

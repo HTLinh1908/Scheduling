@@ -1,54 +1,41 @@
-from Classroom import Classroom
-from Course import Course
-from Schedule import Schedule
 from sample_input import *
+from settings import *
+from GeneticAlgorithm import GeneticAlgorithm
+
+ga = GeneticAlgorithm(courses, classrooms, population_size, mutation_rate, crossover_rate, elitism_rate)
+
+ga.create_population()
+
+print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
+
+for i in range(1, 201):
+    ga.selection()
+    print("Generation: ", i , " best fitnesses: ", ga.population[0].fitness)
+    ##print([x.fitness for x in ga.population])
 
 
-schedule = Schedule()
+res = [[["" for _ in range(len(classrooms))] for _ in range(7)] for _ in range(7)]
+time_in_day = ["8AM", "9:45AM", "11:30AM", "1:15PM", "3PM", "4:45PM"]
 
-for course in courses:
-    schedule.add_course(course)
+for i in range(len(courses)):
+    chosen_slot = courses[i].time_slots[ga.population[0].time[i]]
+    chosen_room = ga.population[0].room[i]
+    for chosen_day, chosen_time, _ in chosen_slot:
+        res[chosen_day][chosen_time][chosen_room] += courses[i].name
+    if (len(chosen_slot) == 1):
+        if (chosen_slot[0][1] == 5):
+            print("error", courses[i].name)
+        res[chosen_slot[0][0]][chosen_slot[0][1] + 1][chosen_room] += courses[i].name
 
-
-for i in range(5):
-    for j in range(5):
-        schedule.table[i][j] = sorted(schedule.table[i][j], key = lambda x : x.capacity)
-
-final_result = [] #list of assigned courses
-
-ok = False
-while (not ok):
-    min_i, min_j = schedule.find_course_min_indices()
-    if (min_i == -1 and min_j == -1):
-        ok = True
-        break
-
-    course = schedule.table[min_i][min_j][0]
-
-    for classroom in classrooms:
-        if (classroom.status[min_i][min_j] == 0 and classroom.capacity >= course.capacity):
-
-            #assign course and classroom
-            classroom.status[min_i][min_j] = course
-            course.room = classroom
-            course.slot = (min_i, min_j)
-            final_result.append(course)
-        
-            #mark course as processed and remove from distribution
-            schedule.remove_course(course)
-
-            break
-
-#for course in final_result:
-  #  print(f"{course.name}: {course.room.name}, {course.slot}")
-
-for classroom in classrooms:
-    print(f"{classroom.name}:")
-    for i in range(5):
-        for j in range(5):
-            if (classroom.status[i][j] != 0):
-                print(f"Day {i}, Time slot {j}: Course {classroom.status[i][j].name}")
+with open("output.txt", "w") as f:
+    for day in range(5):
+        f.write(" ")
+        for i in range(len(classrooms)):
+            f.write(classrooms[i].name + ("row" if i == len(classrooms) - 1 else " "))
+        for i in range(6):
+            f.write(time_in_day[i] + " ")
+            for j in range(len(classrooms)):
+                f.write((res[day][i][j] if res[day][i][j] != "" else "_") + ("row" if j == len(classrooms) - 1 else " "))
+        f.write("end\n")
 
 
-
-    
