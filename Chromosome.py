@@ -1,7 +1,7 @@
 import random
-import numpy as np
 
-class Chromosome():
+
+class Chromosome:
     def __init__(self, courses, classrooms):
         self.fitness = 0
         self.time = [0 for _ in range(len(courses))]
@@ -22,12 +22,17 @@ class Chromosome():
     def calculate_fitness(self):
         self.fitness = 0
 
-        #check if the course capacity is greater than the classroom capacity
+        # check if the course capacity is greater than the classroom capacity
         for i in range(len(self.courses)):
             if self.courses[i].capacity > self.classrooms[self.room[i]].capacity:
-                self.fitness -= 1
+                self.fitness -= 10
 
-        #check if there is two courses in the same room at the same time
+        # check if the classroom capacity is too large for the course
+        for i in range(len(self.courses)):
+            if self.courses[i].capacity <= self.classrooms[self.room[i]].capacity:
+                self.fitness -= self.classrooms[self.room[i]].capacity - self.courses[i].capacity
+
+        # check if there is two courses in the same room at the same time
         for i in range(len(self.courses)):
             for j in range(i+1, len(self.courses)):
                 time1 = self.courses[i].time_slots[self.time[i]]
@@ -35,19 +40,11 @@ class Chromosome():
                 time2 = self.courses[j].time_slots[self.time[j]]
                 room2 = self.classrooms[self.room[j]]
                 violated = 0
-                if (room1.name == room2.name):
+                if room1.name == room2.name:
                     for k in time1:
                         for t in time2:
                             if k == t:
                                 violated = 1
-                                break;
+                                break
                 if violated == 1:
-                    self.fitness -= 1
-
-
-
-
-
-
-
-
+                    self.fitness -= 10

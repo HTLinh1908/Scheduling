@@ -56,10 +56,6 @@ def check_overlapped(list_of_course, chromosome):
 
     return penalty
 
-
-
-
-
 def check_availability(list_of_course, chromosome, list_of_classroom):
     classroom_capacity = []
     course_capacity_matrix = []
@@ -96,9 +92,3 @@ classrooms = [
     Classroom("CR8", 45),
 ]
 classrooms = sorted(classrooms, key = lambda x : x.capacity)
-
-print(check_overlapped(courses, '00000'))
-
-
-
-#print(check_overlapped(courses, '00000'))

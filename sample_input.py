@@ -14,7 +14,7 @@ classrooms = [
     Classroom("CR8", 45),
 ]
 classrooms = sorted(classrooms, key = lambda x : x.capacity) 
-#increasing capacity order
+# increasing capacity order
 
 courses = [
     Course("101", [[(1, 2, 3)], [(3, 0, 3)], [(1, 0, 3)]], 50),
