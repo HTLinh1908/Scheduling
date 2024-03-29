@@ -1,4 +1,4 @@
-from sample_input import *
+from Sample_input import *
 from settings import *
 from GeneticAlgorithm import GeneticAlgorithm
 

@@ -65,42 +65,6 @@ def time_slot_3h_free_all():
 
 def course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_restricted_3h, free_1h30, free_3h):
     base = 100
-<<<<<<< HEAD
-    with open('coures_input.txt', 'w') as f:
-        for i in range(1, restricted_1h30+1):
-            base += 1
-            f.write(f'Course("{base}", {restricted_time_slot_1h30()}, {random.randint(10, 50)}),\n')
-
-        for i in range(1, restricted_3h+1):
-            base += 1
-            f.write(f'Course("{base}", {restricted_time_slot_3h()}, {random.randint(10, 50)}),\n')
-
-        for i in range(1, days_restricted_1h30+1):
-            base += 1
-            f.write(f'Course("{base}", {days_restricted_time_slot_1h30()}, {random.randint(10, 50)}),\n')
-
-        for i in range(1, days_restricted_3h+1):
-            base += 1
-            f.write(f'Course("{base}", {days_restricted_time_slot_3h()}, {random.randint(10, 50)}),\n')
-
-        for i in range(1, free_1h30+1):
-            base += 1
-            f.write(f'Course("{base}", {time_slot_1h30_free_all()}, {random.randint(10, 50)}),\n')
-
-        for i in range(1, free_3h):
-            base += 1
-            f.write(f'Course("{base}", {time_slot_3h_free_all()}, {random.randint(10, 50)}),\n')
-
-
-def main():
-    total = 150
-    restricted_1h30 = int(0.05 * total)
-    restricted_3h = int(0.05 * total)
-    days_restricted_1h30 = int(0.05 * total)
-    days_restricted_3h = int(0.05 * total)
-    free_1h30 = int(0.05 * total)
-    free_3h = int(0.75*total)
-=======
     for i in range(1, restricted_1h30+1):
         base += 1
         print("Course(\"", end="")
@@ -169,7 +133,6 @@ def main():
     days_restricted_3h = 5
     free_1h30 = 5
     free_3h = 5
->>>>>>> origin/linh
     course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_restricted_3h, free_1h30, free_3h)
 
 
