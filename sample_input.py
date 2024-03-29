@@ -1,20 +1,4 @@
 from Course import Course
-from Classroom import Classroom
-
-classrooms = [
-    Classroom("CR501", 70),
-    Classroom("CR502", 65),
-    Classroom("CR1", 55),
-    Classroom("CR2", 25),
-    Classroom("CR4", 45),
-    Classroom("CR3", 30),
-    Classroom("CR5", 15),
-    Classroom("CR6", 35),
-    Classroom("CR7", 35),
-    Classroom("CR8", 45),
-]
-classrooms = sorted(classrooms, key = lambda x : x.capacity) 
-# increasing capacity order
 
 courses = [
     Course("101", [[(1, 2, 3)], [(3, 0, 3)], [(1, 0, 3)]], 50),
