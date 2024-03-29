@@ -17,7 +17,11 @@ def restricted_time_slot_3h():
     duration = 3
     for i in range(3):
         day = random.randint(0, 4)
+<<<<<<< HEAD
         time = random.randint(0, 4)
+=======
+        time = random.randint(0, 5)
+>>>>>>> origin/linh
         time_3h.append([(day, time, duration)])
     return time_3h
 
@@ -61,6 +65,7 @@ def time_slot_3h_free_all():
 
 def course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_restricted_3h, free_1h30, free_3h):
     base = 100
+<<<<<<< HEAD
     with open('coures_input.txt', 'w') as f:
         for i in range(1, restricted_1h30+1):
             base += 1
@@ -95,6 +100,76 @@ def main():
     days_restricted_3h = int(0.05 * total)
     free_1h30 = int(0.05 * total)
     free_3h = int(0.75*total)
+=======
+    for i in range(1, restricted_1h30+1):
+        base += 1
+        print("Course(\"", end="")
+        print(base, end="")
+        print("\", ", end="")
+        print(restricted_time_slot_1h30(), end="")
+        print(", ", end="")
+        print(random.randint(10, 50), end="")
+        print("),")
+
+    for i in range(1, restricted_3h+1):
+        base += 1
+        print("Course(\"", end="")
+        print(base, end="")
+        print("\", ", end="")
+        print(restricted_time_slot_3h(), end="")
+        print(", ", end="")
+        print(random.randint(10, 50), end="")
+        print("),")
+
+    for i in range(1, days_restricted_1h30+1):
+        base += 1
+        print("Course(\"", end="")
+        print(base, end="")
+        print("\", ", end="")
+        print(days_restricted_time_slot_1h30(), end="")
+        print(", ", end="")
+        print(random.randint(10, 50), end="")
+        print("),")
+
+    for i in range(1, days_restricted_3h+1):
+        base += 1
+        print("Course(\"", end="")
+        print(base, end="")
+        print("\", ", end="")
+        print(days_restricted_time_slot_3h(), end="")
+        print(", ", end="")
+        print(random.randint(10, 50), end="")
+        print("),")
+
+    for i in range(1, free_1h30+1):
+        base += 1
+        print("Course(\"", end="")
+        print(base, end="")
+        print("\", ", end="")
+        print(time_slot_1h30_free_all(), end="")
+        print(", ", end="")
+        print(random.randint(10, 50), end="")
+        print("),")
+
+    for i in range(1, free_3h):
+        base += 1
+        print("Course(\"", end="")
+        print(base, end="")
+        print("\", ", end="")
+        print(time_slot_3h_free_all(), end="")
+        print(", ", end="")
+        print(random.randint(10, 50), end="")
+        print("),")
+
+
+def main():
+    restricted_1h30 = 5
+    restricted_3h = 5
+    days_restricted_1h30 = 5
+    days_restricted_3h = 5
+    free_1h30 = 5
+    free_3h = 5
+>>>>>>> origin/linh
     course_generator(restricted_1h30, restricted_3h, days_restricted_1h30, days_restricted_3h, free_1h30, free_3h)
 
 
