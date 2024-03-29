@@ -10,8 +10,8 @@ print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
 for i in range(1, 201):
     ga.selection()
-    print("Generation: ", i, " best fitnesses: ", ga.population[0].fitness)
-    ##print([x.fitness for x in ga.population])
+    print("Generation: ", i, " best fitness: ", ga.population[0].fitness)
+    # print([x.fitness for x in ga.population])
 
 
 res = [[["" for _ in range(len(classrooms))] for _ in range(7)] for _ in range(7)]
@@ -22,8 +22,8 @@ for i in range(len(courses)):
     chosen_room = ga.population[0].room[i]
     for chosen_day, chosen_time, _ in chosen_slot:
         res[chosen_day][chosen_time][chosen_room] += courses[i].name
-    if (len(chosen_slot) == 1):
-        if (chosen_slot[0][1] == 5):
+    if len(chosen_slot) == 1:
+        if chosen_slot[0][1] == 5:
             print("error", courses[i].name)
         res[chosen_slot[0][0]][chosen_slot[0][1] + 1][chosen_room] += courses[i].name
 
@@ -35,7 +35,6 @@ with open("output.txt", "w") as f:
         for i in range(6):
             f.write(time_in_day[i] + " ")
             for j in range(len(classrooms)):
-                f.write((res[day][i][j] if res[day][i][j] != "" else "_") + ("row" if j == len(classrooms) - 1 else " "))
+                f.write((res[day][i][j] if res[day][i][j] != "" else "_")
+                        + ("row" if j == len(classrooms) - 1 else " "))
         f.write("end\n")
-
-
