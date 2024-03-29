@@ -10,7 +10,7 @@ print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
 for i in range(1, 201):
     ga.selection()
-    print("Generation: ", i , " best fitnesses: ", ga.population[0].fitness)
+    print("Generation: ", i, " best fitnesses: ", ga.population[0].fitness)
     ##print([x.fitness for x in ga.population])
 
 
