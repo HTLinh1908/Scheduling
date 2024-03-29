@@ -1,4 +1,21 @@
 from Course import Course
+from Classroom import Classroom
+
+classrooms = [
+    Classroom("CR501", 70),
+    Classroom("CR502", 65),
+    Classroom("CR1", 55),
+    Classroom("CR2", 25),
+    Classroom("CR4", 45),
+    Classroom("CR3", 30),
+    Classroom("CR5", 15),
+    Classroom("CR6", 35),
+    Classroom("CR7", 35),
+    Classroom("CR8", 45),
+]
+classrooms = sorted(classrooms, key = lambda x : x.capacity)
+#increasing capacity order
+
 courses = [
     Course("101", [[(0, 0, 1.5), (2, 0, 1.5)], [(0, 0, 1.5), (2, 0, 1.5)], [(1, 2, 1.5), (3, 2, 1.5)]], 20),
     Course("102", [[(1, 0, 3)], [(0, 0, 3)], [(4, 1, 3)]], 20),
@@ -49,4 +66,5 @@ courses = [
     Course("147", [[(2, 0, 1.5), (4, 0, 1.5)], [(1, 4, 1.5), (3, 4, 1.5)], [(1, 1, 1.5), (3, 1, 1.5)]], 40),
     Course("148", [[(2, 1, 1.5), (4, 1, 1.5)], [(0, 0, 1.5), (2, 0, 1.5)], [(2, 4, 1.5), (4, 4, 1.5)]], 20),
     Course("149", [[(1, 1, 1.5), (3, 1, 1.5)], [(1, 0, 1.5), (3, 0, 1.5)], [(0, 0, 1.5), (2, 0, 1.5)]], 20),
-    Course("150", [[(3, 2, 3)], [(3, 0, 3)], [(1, 3, 3)]], 50)]
+    Course("150", [[(3, 2, 3)], [(3, 0, 3)], [(1, 3, 3)]], 50)
+]

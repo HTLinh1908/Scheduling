@@ -37,7 +37,7 @@ class GeneticAlgorithm():
             parent2 = self.population[np.random.randint(0, len(self.population))]
             cnt += 1
             child = self.crossover(parent1, parent2, cnt)
-           #child = self.mutation(child)
+            child = self.mutation(child)
             child.calculate_fitness()
             new_population.append(child)
         self.population = new_population

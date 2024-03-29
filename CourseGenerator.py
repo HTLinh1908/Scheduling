@@ -17,11 +17,7 @@ def restricted_time_slot_3h():
     duration = 3
     for i in range(3):
         day = random.randint(0, 4)
-<<<<<<< HEAD
         time = random.randint(0, 4)
-=======
-        time = random.randint(0, 5)
->>>>>>> origin/linh
         time_3h.append([(day, time, duration)])
     return time_3h
 
