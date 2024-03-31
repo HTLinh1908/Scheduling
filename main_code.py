@@ -8,7 +8,7 @@ ga.create_population()
 
 print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
-for i in range(1, 201):
+for i in range(1, 101):
     ga.selection()
     print("Generation: ", i, " best fitness: ", ga.population[0].fitness)
     # print([x.fitness for x in ga.population])
