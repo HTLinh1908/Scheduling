@@ -10,11 +10,13 @@ print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
 for i in range(1, 101):
     ga.selection()
-    print("Generation: ", i, " best fitness: ", ga.population[0].fitness)
+    print("Generation: ", i, " best fitness: ", ga.population[0].classroom_penalty, ga.population[0].course_penalty, ga.population[0].fitness)
     # print([x.fitness for x in ga.population])
 
 
-res = [[["" for _ in range(len(classrooms))] for _ in range(7)] for _ in range(7)]
+res = [[["" for _ in range(len(classrooms))] for _ in range(6)] for _ in range(5)]
+
+
 time_in_day = ["8AM", "9:45AM", "11:30AM", "1:15PM", "3PM", "4:45PM"]
 
 for i in range(len(courses)):
