@@ -8,12 +8,37 @@ ga.create_population()
 
 print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
-for i in range(1, 101):
+for i in range(1, 10001):
     ga.selection()
-    print("Generation: ", i, " best fitness: ", ga.population[0].classroom_penalty, ga.population[0].course_penalty, ga.population[0].fitness)
-    # print([x.fitness for x in ga.population])
+    print("Generation: ", i, " best fitness: ")
+    avg_10_percent_fitness = 0
+    for j in range(int(population_size/10)):
+        avg_10_percent_fitness += ga.population[j].fitness
+
+    # print(ga.population[0].classroom_penalty, ga.population[0].course_penalty, ga.population[0].fitness)
+    avg_10_percent_fitness /= int(population_size / 10)
+    print(avg_10_percent_fitness)
+    if (avg_10_percent_fitness >= -5):
+        print("Decent solutions found. Stopping the algorithm.")
+        break
+
+    if ga.previous_best_fitness == avg_10_percent_fitness:
+        ga.no_improvement_counter += 1
+    else:
+        ga.no_improvement_counter = 0  # Reset the counter if there's improvement
+
+    ga.previous_best_fitness = avg_10_percent_fitness  # Update the best fitness
+
+    # If there's no improvement for 100 continuous generations, stop the algorithm
+    if ga.no_improvement_counter >= 100:
+        print("No improvement in the top 10% of the population for 100 continuous generations. Stopping the algorithm.")
+        break
 
 
+
+
+
+"""OUTPUT"""
 res = [[["" for _ in range(len(classrooms))] for _ in range(6)] for _ in range(5)]
 
 
