@@ -8,31 +8,50 @@ ga.create_population()
 
 print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
-for i in range(1, 10001):
-    ga.selection()
-    print("Generation: ", i, " best fitness: ")
-    avg_10_percent_fitness = 0
-    for j in range(int(population_size/10)):
-        avg_10_percent_fitness += ga.population[j].fitness
+original_population_size = population_size
 
-    # print(ga.population[0].classroom_penalty, ga.population[0].course_penalty, ga.population[0].fitness)
-    avg_10_percent_fitness /= int(population_size / 10)
-    print(avg_10_percent_fitness)
-    if (avg_10_percent_fitness >= -5):
-        print("Decent solutions found. Stopping the algorithm.")
-        break
+with open("log.txt", "w") as log:
+    for i in range(101):
+        population_size = original_population_size + i*50
+        ga = GeneticAlgorithm(courses, classrooms, population_size, mutation_rate, crossover_rate, elitism_rate)
+        ga.create_population()
+        print("New population size")
+        while True:
+            ga.selection()
+            avg_10_percent_fitness = 0
+            for j in range(int(population_size/10)):
+                avg_10_percent_fitness += ga.population[j].fitness
 
-    if ga.previous_best_fitness == avg_10_percent_fitness:
-        ga.no_improvement_counter += 1
-    else:
-        ga.no_improvement_counter = 0  # Reset the counter if there's improvement
+            # print(ga.population[0].classroom_penalty, ga.population[0].course_penalty, ga.population[0].fitness)
+            avg_10_percent_fitness /= int(population_size / 10)
+            avg_10_percent_fitness = round(avg_10_percent_fitness, 3)
+            if avg_10_percent_fitness >= -5:
+                log.write("Decent solutions found. Best fitness: ")
+                for j in range(10):
+                    log.write(str(ga.population[j].fitness))
+                    log.write(" ")
+                log.write("\n")
+                break
 
-    ga.previous_best_fitness = avg_10_percent_fitness  # Update the best fitness
 
-    # If there's no improvement for 100 continuous generations, stop the algorithm
-    if ga.no_improvement_counter >= 100:
-        print("No improvement in the top 10% of the population for 100 continuous generations. Stopping the algorithm.")
-        break
+            print(ga.previous_best_fitness)
+
+            if ga.previous_best_fitness >= avg_10_percent_fitness:
+                ga.no_improvement_counter += 1
+            else:
+                ga.no_improvement_counter = 0  # Reset the counter if there's improvement
+            # print(ga.no_improvement_counter)
+            # If there's no improvement for 100 continuous generations, stop the algorithm
+            if ga.no_improvement_counter >= 10:
+                log.write("No improvement. Best fitness: ")
+                for j in range(10):
+                    log.write(str(ga.population[j].fitness))
+                    log.write(" ")
+                log.write(str(avg_10_percent_fitness))
+                log.write("\n")
+                break
+
+            ga.previous_best_fitness = max(ga.previous_best_fitness, avg_10_percent_fitness)  # Update the best fitness
 
 
 

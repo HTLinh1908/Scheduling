@@ -13,7 +13,7 @@ class GeneticAlgorithm:
         self.elitism_rate = elitism_rate
         self.best_individuals = []
         self.no_improvement_counter = 0
-        self.previous_best_fitness = 0
+        self.previous_best_fitness = -999999999
 
     def create_population(self):
         # print("creating population...")
