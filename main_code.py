@@ -11,7 +11,7 @@ print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 original_population_size = population_size
 
 with open("log.txt", "w") as log:
-    for i in range(101):
+    for i in range(10001):
         population_size = original_population_size + i*50
         ga = GeneticAlgorithm(courses, classrooms, population_size, mutation_rate, crossover_rate, elitism_rate)
         ga.create_population()
@@ -41,7 +41,7 @@ with open("log.txt", "w") as log:
                 ga.no_improvement_counter = 0  # Reset the counter if there's improvement
             # print(ga.no_improvement_counter)
             # If there's no improvement for 100 continuous generations, stop the algorithm
-            if ga.no_improvement_counter >= 10:
+            if ga.no_improvement_counter >= 100:
                 log.write("No improvement. Best fitness: ")
                 for j in range(10):
                     log.write(str(ga.population[j].fitness))
