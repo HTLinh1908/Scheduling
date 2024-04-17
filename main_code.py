@@ -33,8 +33,7 @@ with open("log.txt", "w") as log:
                 log.write("\n")
                 break
 
-
-            print(ga.previous_best_fitness)
+            # print(ga.previous_best_fitness)
 
             if ga.previous_best_fitness >= avg_10_percent_fitness:
                 ga.no_improvement_counter += 1
