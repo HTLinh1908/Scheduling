@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Scheduling_interpreter" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Scheduling_interpreter" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="scheduler" project-jdk-type="Python SDK" />
 </project>

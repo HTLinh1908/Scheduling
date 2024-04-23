@@ -10,17 +10,19 @@ ga.create_population()
 print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
 original_population_size = population_size
+original_crossover_rate = crossover_rate
 
 with open('log.txt', 'w') as clear:
     clear.close()
 
-for i in range(10000):
+for i in range(1000):
     with open("log.txt", "a") as log:
-        population_size = original_population_size + i*500
+        crossover_rate = original_crossover_rate + 0.001*i
+        print(crossover_rate)
         ga = GeneticAlgorithm(courses, classrooms, population_size, mutation_rate, crossover_rate, elitism_rate)
         ga.create_population()
-        print("population size:", population_size)
-        log.write("population size: " + str(population_size) + "\n")
+        print("crossover_rate:", crossover_rate)
+        log.write("crossover rate: " + str(crossover_rate) + "\n")
 
         start_time = time.time()
 

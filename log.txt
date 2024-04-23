@@ -1,1 +1,1 @@
-population size: 500
+crossover rate: 0.6
