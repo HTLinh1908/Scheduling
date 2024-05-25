@@ -1,10 +1,13 @@
 import numpy as np
 from Chromosome import Chromosome
-
+import multiprocessing as mp
+from multiprocessing import Pool, Manager
+import time
 
 class GeneticAlgorithm:
     def __init__(self, courses, classrooms, population_size, mutation_rate, crossover_rate, elitism_rate):
         self.population = []
+        self.new_population = []
         self.courses = courses
         self.classrooms = classrooms
         self.population_size = population_size
@@ -15,49 +18,68 @@ class GeneticAlgorithm:
         self.no_improvement_counter = 0
         self.previous_best_fitness = -999999999
 
+    def create_chromosome(self, _):
+        new_chromosome = Chromosome(self.courses, self.classrooms)
+        new_chromosome.random_generate()
+        new_chromosome.calculate_fitness()
+        return new_chromosome
+
     def create_population(self):
-        # print("creating population...")
-        self.population = []
-        for _ in range(self.population_size):
-            new_chromosome = Chromosome(self.courses, self.classrooms)
-            new_chromosome.random_generate()
-            self.population.append(new_chromosome)
+        with Pool(processes=16) as pool:  # Adjust the number of processes as needed
+            #print("ok")
+            self.population = pool.map(self.create_chromosome, range(self.population_size))
+            #print(len(self.population))
+        self.population.sort(key=lambda x: x.get_fitness(), reverse=True)
         return self.population
 
-    def selection(self):
+    def create_population_no_multi(self):
+        self.population = [self.create_chromosome(_) for _ in range(self.population_size)]
+        #print(len(self.population))
+        return self.population
+
+    def tournament_selection(self, index):
+        parent1 = self.population[np.random.randint(0, len(self.population))]
+        parent2 = self.population[np.random.randint(0, len(self.population))]
+        child = self.crossover(parent1, parent2)
+        child = self.mutation(child)
+        child.calculate_fitness()
+        # print(child.get_fitness())
+        self.new_population[index] = child
+        #print(len(self.new_population))
+        # print("ok")
+
+    def selection(self, multi):
         # print("performing selection...")
         # sort the population by fitness in decreasing order
         self.population.sort(key=lambda x: x.get_fitness(), reverse=True)
-
+        elitism_cnt = int(self.elitism_rate*self.population_size)
         # select the best individuals, the rate is equal elitism_rate
-        new_population = self.population[:int(self.elitism_rate*self.population_size)]
+        self.new_population = self.population
 
         # select the rest of the individuals using tournament selection
-        self.population = self.population[int(self.elitism_rate*self.population_size):]
+        self.population = self.population[elitism_cnt:]
         cnt = 0
-        while len(new_population) < self.population_size:
-            parent1 = self.population[np.random.randint(0, len(self.population))]
-            parent2 = self.population[np.random.randint(0, len(self.population))]
-            cnt += 1
-            child = self.crossover(parent1, parent2, cnt)
-            child = self.mutation(child)
-            child.calculate_fitness()
-            new_population.append(child)
-        self.population = new_population
+        if (not multi):
+            for i in range(elitism_cnt, self.population_size):
+                self.tournament_selection(i)
+                # print(len(new_population))
+        else:
+            with Pool(processes=20) as pool:
+                pool.map(self.tournament_selection, range(elitism_cnt, self.population_size))
+                print("okk")
+
+        self.population = self.new_population
         self.population.sort(key=lambda x: x.get_fitness(), reverse=True)
 
-    def crossover(self, parent1, parent2, cnt):
+    def crossover(self, parent1, parent2):
         child = Chromosome(self.courses, self.classrooms)
-        cross_cnt = 0
         for i in range(len(parent1.time)):
             if np.random.rand() < self.crossover_rate:
                 child.time[i] = parent1.time[i]
-                cross_cnt += 1
             else:
                 child.time[i] = parent2.time[i]
             if np.random.rand() < self.crossover_rate:
                 child.room[i] = parent1.room[i]
-                cross_cnt += 1
             else:
                 child.room[i] = parent2.room[i]
 
