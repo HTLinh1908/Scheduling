@@ -1,7 +1,8 @@
 import numpy as np
 from Chromosome import Chromosome
 
-class GeneticAlgorithm():
+
+class GeneticAlgorithm:
     def __init__(self, courses, classrooms, population_size, mutation_rate, crossover_rate, elitism_rate):
         self.population = []
         self.courses = courses
@@ -11,9 +12,11 @@ class GeneticAlgorithm():
         self.crossover_rate = crossover_rate
         self.elitism_rate = elitism_rate
         self.best_individuals = []
+        self.no_improvement_counter = 0
+        self.previous_best_fitness = -999999999
 
     def create_population(self):
-        #print("creating population...")
+        # print("creating population...")
         self.population = []
         for _ in range(self.population_size):
             new_chromosome = Chromosome(self.courses, self.classrooms)
@@ -22,14 +25,14 @@ class GeneticAlgorithm():
         return self.population
 
     def selection(self):
-        #print("performing selection...")
-        #sort the population by fitness in decreasing order
+        # print("performing selection...")
+        # sort the population by fitness in decreasing order
         self.population.sort(key=lambda x: x.get_fitness(), reverse=True)
 
-        #select the best individuals, the rate is equal elitism_rate
+        # select the best individuals, the rate is equal elitism_rate
         new_population = self.population[:int(self.elitism_rate*self.population_size)]
 
-        #select the rest of the individuals using tournament selection
+        # select the rest of the individuals using tournament selection
         self.population = self.population[int(self.elitism_rate*self.population_size):]
         cnt = 0
         while len(new_population) < self.population_size:

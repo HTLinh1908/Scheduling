@@ -1,6 +1,7 @@
 from sample_input import *
 from settings import *
 from GeneticAlgorithm import GeneticAlgorithm
+import time
 
 ga = GeneticAlgorithm(courses, classrooms, population_size, mutation_rate, crossover_rate, elitism_rate)
 
@@ -8,13 +9,65 @@ ga.create_population()
 
 print("Generation: ", 0, " best fitness: ", ga.population[0].fitness)
 
-for i in range(1, 101):
-    ga.selection()
-    print("Generation: ", i, " best fitness: ", ga.population[0].fitness)
-    # print([x.fitness for x in ga.population])
+original_population_size = population_size
+
+with open('log.txt', 'w') as clear:
+    clear.close()
+
+for i in range(10000):
+    with open("log.txt", "a") as log:
+        population_size = original_population_size + i*500
+        ga = GeneticAlgorithm(courses, classrooms, population_size, mutation_rate, crossover_rate, elitism_rate)
+        ga.create_population()
+        print("population size:", population_size)
+        log.write("population size: " + str(population_size) + "\n")
+
+        start_time = time.time()
+
+        while True:
+            ga.selection()
+            avg_10_percent_fitness = 0
+            for j in range(int(population_size/10)):
+                avg_10_percent_fitness += ga.population[j].fitness
+
+            # print(ga.population[0].classroom_penalty, ga.population[0].course_penalty, ga.population[0].fitness)
+            avg_10_percent_fitness /= int(population_size / 10)
+            avg_10_percent_fitness = round(avg_10_percent_fitness, 3)
+            if avg_10_percent_fitness >= -5:
+                log.write("Decent solutions found. Best fitness: ")
+                for j in range(10):
+                    log.write(str(ga.population[j].fitness))
+                    log.write(" ")
+                log.write("\n")
+                break
+
+            print(ga.previous_best_fitness)
+
+            if ga.previous_best_fitness >= avg_10_percent_fitness:
+                ga.no_improvement_counter += 1
+            else:
+                ga.no_improvement_counter = 0  # Reset the counter if there's improvement
+            # print(ga.no_improvement_counter)
+            # If there's no improvement for 100 continuous generations, stop the algorithm
+            if ga.no_improvement_counter >= 100:
+                print("bruh")
+                log.write("No improvement. Best fitness: ")
+                for j in range(10):
+                    log.write(str(ga.population[j].fitness))
+                    log.write(" ")
+                log.write(str(avg_10_percent_fitness))
+                log.write("\n")
+                break
+            ga.previous_best_fitness = max(ga.previous_best_fitness, avg_10_percent_fitness)  # Update the best fitness
+
+        elapsed_time = time.time() - start_time  # Calculate the elapsed time
+        log.write("Time: " + str(elapsed_time) + " seconds\n\n")
+        log.close()
+
+"""OUTPUT"""
+res = [[["" for _ in range(len(classrooms))] for _ in range(6)] for _ in range(5)]
 
 
-res = [[["" for _ in range(len(classrooms))] for _ in range(7)] for _ in range(7)]
 time_in_day = ["8AM", "9:45AM", "11:30AM", "1:15PM", "3PM", "4:45PM"]
 
 for i in range(len(courses)):

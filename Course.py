@@ -1,4 +1,3 @@
-import numpy as np
 from Classroom import Classroom
 class Course:
 
