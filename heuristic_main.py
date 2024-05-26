@@ -1,4 +1,8 @@
+import time
+
 from sample_input_heuristic import *
+
+start = time.time()
 
 levels = [[], [], [], []]
 timeslot_priority_list = [0, 1, 2, 3, 4, 5]
@@ -59,3 +63,4 @@ for course in courses:
         print(f"Failed to assign {course.name}: capacity {course.capacity}, type {course.type}")
 
 print(f"Success rate: {success_count}/{len(courses)}")
+print("--- %s seconds ---" % (time.time() - start))
