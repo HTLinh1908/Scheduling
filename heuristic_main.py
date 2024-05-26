@@ -51,11 +51,11 @@ with open("output.txt", "w") as f:
                         + ("row" if j == len(classrooms) - 1 else " "))
         f.write("end\n")
 
-sucess_cnt = 0
+success_count = 0
 for course in courses:
     if course.chosen_slot != (-1, -1, -1):
-        sucess_cnt += 1
+        success_count += 1
     else:
         print(f"Failed to assign {course.name}: capacity {course.capacity}, type {course.type}")
 
-print(f"Success rate: {sucess_cnt}/{len(courses)}")
+print(f"Success rate: {success_count}/{len(courses)}")

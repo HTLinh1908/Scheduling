@@ -1,4 +1,3 @@
-from Classroom import Classroom
 class Course:
     def __init__(self, name, major, level, type, is_restricted, capacity, time_slots = []):
         self.name = name
