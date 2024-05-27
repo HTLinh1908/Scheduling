@@ -2,16 +2,18 @@ from Course import Course
 from Classroom import Classroom
 
 classrooms = [
-    Classroom("CR501", 70),
-    Classroom("CR502", 65),
-    Classroom("CR1", 55),
-    Classroom("CR2", 25),
-    Classroom("CR4", 45),
-    Classroom("CR3", 30),
-    Classroom("CR5", 15),
-    Classroom("CR6", 35),
-    Classroom("CR7", 35),
-    Classroom("CR8", 45),
+    Classroom("CR501", 70, 0),
+    Classroom("CR502", 65, 1),
+    Classroom("CR1", 55, 2),
+    Classroom("CR2", 25, 3),
+    Classroom("CR4", 45, 4),
+    Classroom("CR3", 30, 5),
+    Classroom("CR5", 15, 6),
+    Classroom("CR6", 35, 7),
+    Classroom("CR7", 35, 8),
+    Classroom("CR8", 45, 9),
+    Classroom("Makerspace", 40, 10),
+    Classroom("Ideation_Hub", 30, 11)
 ]
 classrooms = sorted(classrooms, key=lambda x: x.capacity)
 # increasing capacity order
