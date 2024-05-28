@@ -1,5 +1,7 @@
 class Course:
-    def __init__(self, name, major, level, type, is_restricted, capacity, time_slots = []):
+    def __init__(self, name, major, level, type, is_restricted, capacity, time_slots=None):
+        if time_slots is None:
+            time_slots = []
         self.name = name
         # the course code, E.g. CS302, MATH101
 
