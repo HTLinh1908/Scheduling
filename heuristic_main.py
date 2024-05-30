@@ -5,7 +5,7 @@ from sample_input_heuristic import *
 start = time.time()
 
 levels = [[], [], [], []]
-timeslot_priority_list = [0, 1, 2, 3, 4, 5]
+timeslot_priority_list = [1, 2, 3, 4, 0, 5]
 # 9:45, 11:15, 13:15, 15h, 8h, 16:45
 
 res = [[["" for _ in range(len(classrooms))] for _ in range(6)] for _ in range(5)]

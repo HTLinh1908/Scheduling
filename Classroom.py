@@ -6,3 +6,6 @@ class Classroom:
 
     def get_capacity(self):
         return self.capacity
+
+    def __str__(self):
+        return self.name
